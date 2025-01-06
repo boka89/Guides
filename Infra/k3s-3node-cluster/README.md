@@ -35,6 +35,12 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 --tls-san=192.168.10.200
 
 ```
+## To get another traefik instance on a secondery node simply edit the config file
+
+`sudo kubectl edit deploy traefik --namespace kube-system`  
+
+and change the replicas number from 1 to 2.
+
 ## To add this K3S cluster to an already exising Portainer (running on Docker on a different node)
 
 First enable the docker agent on the server node with below command:
