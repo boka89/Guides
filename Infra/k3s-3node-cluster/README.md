@@ -37,6 +37,8 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 # To add this K3S cluster to an already exising Portainer (running on Docker on a different node)
 
 First enable the docker agent on the server node with below command:
-`kubectl apply -f https://downloads.portainer.io/ce2-21/portainer-agent-k8s-lb.yaml
+``` 
+kubectl apply -f https://downloads.portainer.io/ce2-21/portainer-agent-k8s-lb.yaml
+```
 
-Then simply use the wizard in portainer under the Administration -> Environment-related -> Environments -> Add environment
+Then simply use the wizard in portainer under the Administration \-> Environment-related \-> Environments \-> Add environment
