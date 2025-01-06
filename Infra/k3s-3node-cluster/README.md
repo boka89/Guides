@@ -1,6 +1,6 @@
-## K3S cluster installation on 3 nodes
+# K3S cluster installation on 3 nodes
 
-# To crete the first server on the first node
+## To crete the first server on the first node
 ```
 curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 --cluster-init \
@@ -11,12 +11,11 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 --tls-san=k3s
 ```
 
-# To verify the k3s node, use the below command:
-```
-kubectl get nodes
-```
+## To verify the k3s node, use the below command:
 
-# To join the first node to the previously created cluster
+`kubectl get nodes`
+
+## To join the first node to the previously created cluster
 ```
 curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 --server https://192.168.10.201:6443 \
@@ -26,7 +25,7 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 
 ```
 
-# To join the second node to the previously created cluster
+## To join the second node to the previously created cluster
 ```
 
 curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
@@ -36,7 +35,7 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 --tls-san=192.168.10.200
 
 ```
-# To add this K3S cluster to an already exising Portainer (running on Docker on a different node)
+## To add this K3S cluster to an already exising Portainer (running on Docker on a different node)
 
 First enable the docker agent on the server node with below command:
 ``` 
