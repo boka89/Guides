@@ -12,7 +12,9 @@ curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
 ```
 
 # To verify the k3s node, use the below command:
-`kubectl get nodes
+```
+kubectl get nodes
+```
 
 # To join the first node to the previously created cluster
 ```
