@@ -1,4 +1,4 @@
-##K3S cluster installation on 3 nodes
+## K3S cluster installation on 3 nodes
 
 # To crete the first server on the first node
 ```
