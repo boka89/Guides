@@ -1,4 +1,4 @@
-# Deploy cert-manager using Let's Encrypt as Root CA and Cloudflare as DNS registrar
+# Install cert-manager using Let's Encrypt as Root CA and Cloudflare as DNS registrar
 
 ## Install cert-meneger
 ```helm repo add jetstack https://charts.jetstack.io --force-update```
