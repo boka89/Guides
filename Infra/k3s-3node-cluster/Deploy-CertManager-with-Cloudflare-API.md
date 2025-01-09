@@ -12,12 +12,18 @@ helm install \
 ```
 
 ## Create the API secret of Cloudflare in the secret.yaml file
-
+```
+<your config comes here>
+```
 ## Apply the secret
 kubectl apply -f secret.yaml -n cert-manager
 
 ## Apply the clusterissuer to your namespace
-``` kubectl apply -f clusterissuer.yaml ````
+```
+<your config comes here>
+```
+
+``` kubectl apply -f clusterissuer.yaml ```
 
 ## To test the certificate issuing progress, use the below commands
 
