@@ -1,0 +1,55 @@
+# Install ArgoCD with a Traefik Ingress
+
+## Install ArgoCD with the below command
+```
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+## To get the dafult admin user's password, use the below command:
+
+```
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
+## Create the Ingress for ArgoCD with the below file
+```
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: argocd-server
+  namespace: argocd
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`argocd.k3s.bokors.net`)
+      priority: 10
+      services:
+        - name: argocd-server
+          port: 80
+    - kind: Rule
+      match: Host(`argocd.k3s.bokors.net.`) && Header(`Content-Type`, `applicati>
+      priority: 11
+      services:
+        - name: argocd-server
+          port: 80
+          scheme: h2c
+  tls:
+    secretName: argocd-k3s-bokors-net-tls
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argocd-cert
+spec:
+  secretName: argocd-k3s-bokors-net-tls
+  renewBefore: 240h
+  dnsNames:
+  - 'argocd.k3s.bokors.net'
+  issuerRef:
+    name: cloudflare-clusterissuer
+    kind: ClusterIssuer
+```
+
+## Apply the above manifest to the k3s cluster (Make sure your CertManager is properly configure prior to this step)
+``` kubectl apply -f ./<your-file-name>.yml ```
