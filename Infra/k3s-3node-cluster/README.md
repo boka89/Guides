@@ -1,5 +1,7 @@
 # K3S cluster installation on 3 nodes
 
+## The correct order is to install the k3s cluster using this readme file, after that follow the Certmanager, and lastly ArgoCD 
+
 ## To crete the first server on the first node
 ```
 curl -sfL https://get.k3s.io | K3S_TOKEN=V3rryS3cr3t sh -s - server \
