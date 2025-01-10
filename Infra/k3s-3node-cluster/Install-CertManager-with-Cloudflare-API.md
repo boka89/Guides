@@ -13,14 +13,39 @@ helm install \
 
 ## Create the API secret of Cloudflare in the secret.yaml file
 ```
-<your config comes here>
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-api-key-secret
+  namespace: cert-manager
+type: Opaque
+stringData:
+  api-key: <your-global-api-comes-here>
 ```
 ## Apply the secret
 kubectl apply -f secret.yaml -n cert-manager
 
 ## Apply the clusterissuer to your namespace
 ```
-<your config comes here>
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cloudflare-clusterissuer
+spec:
+  acme:
+
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: cloudflare-clusterissuer-account-key
+    solvers:
+      - dns01:
+          cloudflare:
+            email: <your-email-address-comes-here>
+            apiKeySecretRef:
+              name: cloudflare-api-key-secret
+              key: api-key
 ```
 
 ``` kubectl apply -f clusterissuer.yaml ```
